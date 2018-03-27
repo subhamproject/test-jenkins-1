@@ -46,8 +46,8 @@ pipeline {
     stage('PushDockerImage') {
             steps {
             	sh '''
-            		docker tag apptest:latest mijack/apptest:latest
-					docker push mijack/apptest:latest
+            		docker tag apptest:latest subhamproject/test-jenkins-1
+					docker push subhamproject/test-jenkins-1
 					docker rmi apptest:latest
                 '''
             }
