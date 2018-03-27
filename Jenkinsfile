@@ -66,7 +66,7 @@ pipeline {
      // mail to: 'smandal@rythmos.com',
      //     subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
        //   body: "Something is wrong with ${env.BUILD_URL}"
-	slackSend (color: '#FFFE89', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+	//slackSend (color: '#FFFE89', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
        emailext (
           subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
           body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
