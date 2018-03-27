@@ -39,16 +39,16 @@ pipeline {
         stage('BuildDocker') {
             steps {
             	sh '''
-            		docker build -t apptest:latest .
+            		docker build -t apptest:latest.$GIT_COMMIT .
                 '''
             }
         } 
     stage('PushDockerImage') {
             steps {
             	sh '''
-            		docker tag apptest:latest subhammandal/test-jenkins-1
-					docker push subhammandal/test-jenkins-1
-					docker rmi apptest:latest
+            		docker tag apptest:latest.$GIT_COMMMIT subhammandal/test-jenkins-1.$GIT_COMMIT
+					docker push subhammandal/test-jenkins-1.$GIT_COMMIT
+					docker rmi apptest:latest.$GIT_COMMIT
                 '''
             }
      } 
