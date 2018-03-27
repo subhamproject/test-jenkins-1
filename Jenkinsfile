@@ -54,7 +54,14 @@ pipeline {
      } 
  }
 	 post {
-    always {
+    success {
+      // notify users when the Pipeline fails
+      mail to: 'smandal@rythmos.com',
+          subject: "Sucessfully Completed: ${currentBuild.fullDisplayName}",
+          body: "Successfully Completed ${env.BUILD_URL}"
+     }
+    }
+	failure {
       // notify users when the Pipeline fails
       mail to: 'smandal@rythmos.com',
           subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
