@@ -54,7 +54,7 @@ pipeline {
      } 
  }
 	 post {
-    failure {
+    always {
       // notify users when the Pipeline fails
       mail to: 'smandal@rythmos.com',
           subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
