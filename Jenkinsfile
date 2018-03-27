@@ -63,9 +63,18 @@ pipeline {
     
 	failure {
       // notify users when the Pipeline fails
-      mail to: 'smandal@rythmos.com',
-          subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-          body: "Something is wrong with ${env.BUILD_URL}"
+     // mail to: 'smandal@rythmos.com',
+     //     subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+       //   body: "Something is wrong with ${env.BUILD_URL}"
+	slackSend (color: '#FFFE89', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+       emailext (
+          subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+          body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+          <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+          attachLog: true, compressLog: true,
+          recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'DevelopersRecipientProvider'],
+                               [$class: 'RequesterRecipientProvider']]
+        )
      }
     }
   }
