@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-RUN apt-get update
+RUN apt-get update --fix-missing
 RUN apt-get install python python-pip -y
 RUN mkdir /opt/app
 COPY src/main.py /opt/app/
