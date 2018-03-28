@@ -1,6 +1,6 @@
 // comment
 pipeline {
- agent any
+ agent master
  stages {
         stage('Checkout-git'){
                steps{
